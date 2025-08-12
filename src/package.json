@@ -1,0 +1,24 @@
+{
+  "name": "nodo_c3-sp5_tp1",
+  "version": "1.0.0",
+  "description": "Trabajo Final",
+  "main": "app.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaoGabiVilla/NODO_C3-SP5_TP1.git"
+  },
+  "author": "Paola Villafañez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaoGabiVilla/NODO_C3-SP5_TP1/issues"
+  },
+  "homepage": "https://github.com/PaoGabiVilla/NODO_C3-SP5_TP1#readme",
+  "dependencies": {
+    "eslint": "^9.33.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.1"
+  }
+}
