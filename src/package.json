@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "main": "app.mjs",
   "scripts": {
+    "start": "node app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Paola Villafañez",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "ejs": "^3.1.10",
     "eslint": "^9.33.0",
     "express": "^5.1.0",
-    "mongoose": "^8.17.1"
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.17.1",
+    "override": "^0.0.1"
   }
 }
