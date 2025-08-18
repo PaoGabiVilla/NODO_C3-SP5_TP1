@@ -1,0 +1,92 @@
+<body>
+    <!-- Título principal de la página -->
+    <h1>Lista de Países</h1>
+
+    <% /* if (successMessage) { %>
+    <div class="alert success" id="mensajeExito"><%= successMessage %></div>
+    <% } */ %>
+
+    <!-- Tabla para mostrar los datos de los países -->
+    <table>
+        <thead>
+            <!-- Cabecera con todos los campos requeridos en Sprint 5 -->
+            <tr>
+                <th>Nombre</th>
+                <th>Capital</th>
+                <th>Fronteras</th>
+                <th>Área</th>
+                <th>Población</th>
+                <th>Gini</th>
+                <th>Timezones</th>
+                <th>Creador</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Bucle EJS que recorre el arreglo 'paises' recibido desde el backend -->
+            <% paises.forEach(pais => { %>
+                <tr>
+                    <!-- Nombre oficial del país; si no existe, mostrar 'Sin nombre' -->
+                   <td><%= pais.name?.nativeName?.spa?.official || 'Sin nombre' %></td>
+                    
+                   <!-- Capital: si es un array, unir con coma; si no hay capital, mostrar 'N/A' -->
+                    <td><%= pais.capital ? pais.capital.join(', ') : 'N/A' %></td>
+
+                    <!-- Fronteras: si hay datos, se listan como elementos <li>; si no, 'N/A' -->
+                    <td>
+                        <% if (pais.borders && pais.borders.length > 0) { %>
+                            <ul>
+                                <% pais.borders.forEach(border => { %>
+                                    <li><%= border %></li>
+                                <% }) %>
+                            </ul>
+                        <% } else { %>
+                            N/A
+                        <% } %>
+                    </td>
+
+                    <!-- Área en km² -->
+                    <td><%= pais.area %> km²</td>
+
+                    <!-- Población con formato de miles -->
+                    <td><%= pais.population ? pais.population.toLocaleString() : 'N/A' %></td>
+
+                    <!-- Gini: si existe, se toma el primer valor del objeto y se le agrega '%' -->
+                    <td><%= pais.gini ? Object.values(pais.gini)[0] + '%' : 'N/A' %></td>
+
+                    <!-- Timezones: unir en una cadena separada por comas o 'N/A' -->
+                    <td><%= pais.timezones ? pais.timezones.join(', ') : 'N/A' %></td>
+
+                    <!-- Nombre del creador (dato agregado en el Sprint 5) -->
+                    <td><%= pais.creador %></td>
+
+                    <!-- Acciones: botones para editar o eliminar -->
+                    <td>
+                        <div class="acciones">
+                            <!-- Botón de editar que redirige a la ruta de edición -->
+                            <button onclick="window.location.href='/api/paises/<%= pais._id %>/edit'">Editar</button>
+
+                            <!-- Formulario para eliminar, usando method-override para simular DELETE -->
+                            <form action="/api/paises/<%= pais._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit" onclick="return confirm('¿Estás seguro que querés eliminar este país?')">Eliminar</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <!-- Script para: 
+         1. Mostrar en consola cuántos países se cargaron.
+         2. Ocultar el mensaje de éxito automáticamente después de 3 segundos. -->
+    <script>
+        console.log("✅ Dashboard cargado con <%= paises.length %> países.");
+        const mensaje = document.getElementById('mensajeExito');
+        if (mensaje) {
+            setTimeout(() => {
+                mensaje.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>

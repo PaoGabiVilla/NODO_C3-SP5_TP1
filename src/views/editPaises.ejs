@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar País</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Editar País</h1>
+
+  <!-- 
+      Formulario para editar un país existente.
+      - method="POST" porque los formularios HTML no soportan PUT directamente.
+      - Se usa method-override con "_method=PUT" para que Express trate la petición como PUT.
+      - La URL incluye el ID del país que se está editando.
+  -->
+  <form class="add" action="/api/paises/<%= pais._id %>?_method=PUT" method="POST">
+
+    <!-- NOMBRE OFICIAL -->
+    <label for="name">Nombre Oficial "El nombre oficial debe tener entre 3 y 90 caracteres":</label>
+    <input type="text" id="nameOfficial" name="name.nativeName.spa.oficial" value="<%= pais.name?.nativeName?.spa?.official %>">
+    <br><br>
+
+    <!-- CAPITAL -->
+    <label for="capital">Capital (si hay más de una, separadas por coma):</label>
+    <input type="text" id="capital" name="capital" 
+           value="<%= pais.capital ? pais.capital.join(', ') : '' %>">
+    <br><br>
+
+    <!-- FRONTERAS -->
+    <label for="borders">Fronteras (códigos de 3 letras, separados por coma):</label>
+    <input type="text" id="borders" name="borders" 
+           value="<%= pais.borders ? pais.borders.join(', ') : '' %>">
+    <br><br>
+
+    <!-- ÁREA -->
+    <label for="area">Área (km²):</label>
+    <input type="number" id="area" name="area" value="<%= pais.area %>">
+    <br><br>
+
+        <!-- POBLACIÓN -->
+    <label for="population">Población:</label>
+    <input type="number" id="population" name="population" value="<%= pais.population %>">
+    <br><br>
+
+    <!-- GINI -->
+    <label for="gini">Índice de Gini (0-100):</label>
+    <input type="number" id="gini" name="gini" value="<%= pais.gini ? pais.gini : '' %>" >
+    <br><br>
+
+    <!-- CREADOR -->
+    <label for="creador">Creador:</label>
+    <input type="text" id="creador" name="creador" value="<%= pais.creador %>">
+    <br><br>
+
+    <!-- BOTÓN DE GUARDAR -->
+    <button type="submit">Actualizar País</button>
+  </form>
+
+  <br>
+  <a href="/api/paises">⬅ Volver al Dashboard</a>
+</body>
+</html>
+
