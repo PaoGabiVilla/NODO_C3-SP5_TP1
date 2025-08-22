@@ -1,3 +1,4 @@
+//countryModel.mjs
 import mongoose from 'mongoose';
 const countrySchema = new mongoose.Schema({
   name: {

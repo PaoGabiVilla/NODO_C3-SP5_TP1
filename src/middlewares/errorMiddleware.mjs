@@ -1,3 +1,4 @@
+//errorMiddleware.mjs
 import { validationResult } from 'express-validator';
 
 export const handleValidationErrors = (req, res, next) => {

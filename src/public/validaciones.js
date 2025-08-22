@@ -1,4 +1,4 @@
-// public/js/validaciones.js
+// public/validaciones.js
 console.log("validaciones cargadas")
 const form = document.querySelector('.add'); // la clase del form
 
