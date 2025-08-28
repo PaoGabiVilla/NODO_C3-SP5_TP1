@@ -1,3 +1,4 @@
+//NODO_C3-SP5_TP1/src/app.mjs
 import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
@@ -53,8 +54,8 @@ app.get('/dashboard', (req, res) => {
 app.get('/addPaises', (req, res) => {
   res.render('addPaises', { title: 'Editar Paises' });
 });
-app.get('/about', (req, res) => {
-  res.render('about', { title: 'Acerca de nosotros' });
+app.get('/acercade', (req, res) => {
+  res.render('acercade', { title: 'Acerca de' });
 });
 
 app.get('/contact', (req, res) => {

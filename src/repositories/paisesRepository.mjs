@@ -1,4 +1,4 @@
-//paisesRepository.mjs se comunica con la base de datos
+//NODO_C3-SP5_TP1/src/repositories/paisesRepository.mjs
 
 import Country from '../models/countryModel.mjs';
 import IRepository from './IRepository.mjs';
@@ -7,7 +7,7 @@ class countryRepository extends IRepository {
 
 //***************************************************************************************************** */
     async obtenerTodos() {
-      return await Country.find({ capital: { $exists: true }});//puede usar status u otro campo de paises en luga de capital para mostrar los paises
+      return await Country.find({ creador: "Paola Gabriela Villafañez"});//puede usar status u otro campo de paises en luga de capital para mostrar los paises
   }
 
 //***************************************************************************************************** */
@@ -25,11 +25,9 @@ class countryRepository extends IRepository {
    async crearPais(datosPais){
      
         const nuevoPais = new Country(datosPais);
-
-        return await nuevoPais.save()// guarda y retorna en una sola linea
-        /*await nuevoPais.save();
-        console.log(nuevoPais);
-        return nuevoPais;*/
+        console.log("Estoy en la capa Repository", nuevoPais)
+        return await nuevoPais.save();
+       
         }
 
 //***************************************************************************************************** */

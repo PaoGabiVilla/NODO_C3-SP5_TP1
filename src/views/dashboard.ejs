@@ -1,5 +1,5 @@
 
-<!--Dashboard.ejs-->
+<!--NODO_C3-SP5_TP1/src/views/Dashboard.ejs-->
 <body>
     <!-- Título principal de la página -->
     <h1>Lista de Países</h1>
@@ -18,8 +18,8 @@
                 <th>Fronteras</th>
                 <th>Área</th>
                 <th>Población</th>
-                <th>Gini</th>
-                <th>Timezones</th>
+                <th>Gini(%)</th>
+                <th>Zona horaria</th>
                 <th>Creador</th>
                 <th>Acciones</th>
             </tr>
@@ -29,10 +29,19 @@
             <% paises.forEach(pais => { %>
                 <tr>
                     <!-- Nombre oficial del país; si no existe, mostrar 'Sin nombre' -->
-                   <td><%= pais.name?.nativeName?.spa?.official || 'Sin nombre' %></td>
+                   <td><%= pais.name.official || 'Sin nombre' %></td>
                     
+                   
                    <!-- Capital: si es un array, unir con coma; si no hay capital, mostrar 'N/A' -->
-                    <td><%= pais.capital ? pais.capital.join(', ') : 'N/A' %></td>
+                    <td><% if (pais.capital && pais.capital.length > 0) { %>
+                            <ul>
+                                <% pais.capital.forEach(capital => { %>
+                                    <li><%= capital %></li>
+                                <% }) %>
+                            </ul>
+                        <% } else { %>
+                            N/A
+                        <% } %></td>
 
                     <!-- Fronteras: si hay datos, se listan como elementos <li>; si no, 'N/A' -->
                     <td>
@@ -54,7 +63,7 @@
                     <td><%= pais.population ? pais.population.toLocaleString() : 'N/A' %></td>
 
                     <!-- Gini: si existe, se toma el primer valor del objeto y se le agrega '%' -->
-                    <td><%= pais.gini ? Object.values(pais.gini)[0] + '%' : 'N/A' %></td>
+                    <td><%= pais.gini !== undefined && pais.gini !== null ? pais.gini : 'Sin dato' %></td>
 
                     <!-- Timezones: unir en una cadena separada por comas o 'N/A' -->
                     <td><%= pais.timezones ? pais.timezones.join(', ') : 'N/A' %></td>

@@ -1,11 +1,9 @@
-//paisesRoutes
+//NODO_C3-SP5_TP1/src/routes/paisesRoutes
 import express from 'express';
 import {
-      obtenerTodosLosPaisesController,
-      obtenerPaisPorIdController, 
-      actualizarPaisController,
-      agregarNuevoPaisController,
-      eliminarPaisPorIdController,
+      obtenerTodosLosPaisesController, actualizarPaisController,
+      agregarNuevoPaisController, mostrarFormularioAgregarPais,
+      eliminarPaisPorIdController
 } from '../controllers/paisesController.mjs';
 
 import Country from '../models/countryModel.mjs';
@@ -30,9 +28,9 @@ router.put('/paises/:id', registerValidationRules(),handleValidationErrors, actu
 
 //****************************************************************************************************** */
 //Agreagar
-router.get('/paises/agregar',agregarNuevoPaisController);
+router.get('/paises/agregar',mostrarFormularioAgregarPais);
 router.post('/paises/agregar', registerValidationRules(), handleValidationErrors, agregarNuevoPaisController);
-router.put('/paises/actualizar/:id', registerValidationRules(),handleValidationErrors, actualizarPaisController);
+//router.put('/paises/actualizar/:id', registerValidationRules(),handleValidationErrors, actualizarPaisController);
 
 //****************************************************************************************************** */
 //Eliminar

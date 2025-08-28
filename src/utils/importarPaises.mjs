@@ -26,7 +26,23 @@ try {
             } = pais;
 
             return {
-                ...countriesClear,
+                // Nombre oficial en español
+                    name: {
+                        official: pais.translations?.spa?.official || pais.name?.official || "Sin nombre"
+                    },
+      
+                    // Capital: tomamos la primera si es array
+                    capital: Array.isArray(pais.capital) ? pais.capital : [],
+      
+                    borders: pais.borders || [],
+                    area: pais.area || 0,
+                    population: pais.population || 0,
+
+                    // Gini: primer valor numérico si existe
+                    gini: pais.gini ? pais.gini[Object.keys(pais.gini)[0]] : null,
+                    
+                    // Timezones: lista completa
+                    timezones: pais.timezones || [],
                 creador: "Paola Gabriela Villafañez"
             };
         });
@@ -36,23 +52,29 @@ try {
     // Guardar JSON local
     fs.writeFileSync('countries_filtered.json', JSON.stringify(countriesFiltered, null, 2));
     console.log('Archivo guardado como countries_filtered.json');
-
+    
     // Buscar duplicados en base de datos por nombre oficial
     const nombresOficialesFiltrados = countriesFiltered
         .map(pais => pais.name?.official)
         .filter(Boolean); // Eliminar nulos/undefined
+    
+        const CREADOR = "Paola Gabriela Villafañez";
 
     const paisesEnBaseDeDatos = await Country.find({
-        "name.official": { $in: nombresOficialesFiltrados }
+        "name.official": { $in: nombresOficialesFiltrados },
+        creador: CREADOR
     }).lean();
 
     const nombresOficialesEnBase = new Set(
         paisesEnBaseDeDatos.map(pais => pais.name.official)
     );
 
-    const paisesParaInsertar = countriesFiltered.filter(
-        pais => !nombresOficialesEnBase.has(pais.name?.official)
-    );
+    const paisesParaInsertar = countriesFiltered
+    .map(pais => ({
+        ...pais,
+        creador: CREADOR
+    }))
+    .filter(pais => !nombresOficialesEnBase.has(pais.name?.official));
 
     if (paisesParaInsertar.length === 0) {
         console.log('No hay nuevos datos para importar.');

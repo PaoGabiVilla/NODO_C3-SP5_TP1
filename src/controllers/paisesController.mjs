@@ -1,6 +1,6 @@
-//paisesController.mjs
+//NODO_C3-SP5_TP1/src/controllers/paisesController.mjs
 import {
-        obtenerTodosLosPaises,
+        obtenerTodosLosPaises,  
         obtenerPaisPorId, actualizarPais,
         crearNuevoPais,
         eliminarPaisPorId
@@ -83,23 +83,38 @@ export async function actualizarPaisController(req, res) {
 }
 
 //*************************************************************************************************************** */
+export function mostrarFormularioAgregarPais(req, res) {
+    res.render('addPaises', { title: 'Agregar País' });
+}
 
+//*************************************************************************************************************** */
+
+// **POST: Guardar el país en DB**
+// Responde a la petición POST /paises/agregar
 export async function agregarNuevoPaisController(req, res) {
     try {
-        const datos = req.body; // Obtiene los datos del cuerpo de la solicitud
-        const paisCreado = await crearNuevoPais(datos);
+        console.log("Datos recibidos en POST:", req.body);
 
+        // Llamamos a la capa de servicio para crear el país
+        const paisCreado = await crearNuevoPais(req.body);
+
+        // Si no se creó correctamente
         if (!paisCreado) {
-            return res.status(404).send({ mensaje: 'Error al crear país' });
+            return res.status(400).send({ mensaje: 'Error al crear país' });
         }
-        // Guardamos el mensaje de éxito en la sesión
+
+        // Guardamos un mensaje en sesión para mostrar luego en el dashboard
         req.session.successMessage = '¡País creado exitosamente!';
-       // Redirigimos al dashboard
-      res.redirect('/api/paises'); 
-    } 
-    catch (error) {
-        res.render('addPaises', {title: 'Agregar de País',
-            errorMessage: 'Hubo un error al crear el país. Asegúrate de completar todos los campos correctamente.'
+        
+        // Redirigimos al listado de países (dashboard)
+        res.redirect('/api/paises');
+    } catch (error) {
+        console.error("Error al crear país:", error);
+
+        // Si algo falla, renderizamos el formulario con mensaje de error
+        res.render('addPaises', {
+            title: 'Agregar País',
+            errorMessage: 'Hubo un error al crear el país. Verifique los datos ingresados.'
         });
     }
 }

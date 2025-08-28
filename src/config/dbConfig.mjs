@@ -1,4 +1,5 @@
-// Conexión a MongoDB
+//NODO_C3-SP5_TP1/src/config/dbConfig.mjs
+//Conexión a MongoDB
 import mongoose from 'mongoose';
 
 export async function connectDB() {

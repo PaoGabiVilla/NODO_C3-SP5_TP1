@@ -1,5 +1,6 @@
-//paisesService.mjs
+//NODO_C3-SP5_TP1/src/services/paisesService.mjs
 import paisesRepository from '../repositories/paisesRepository.mjs';
+
 
 export async function obtenerTodosLosPaises() {
   return await paisesRepository.obtenerTodos();
@@ -14,8 +15,9 @@ export async function actualizarPais(id, datosActualizarPais) {
 }
 
 export async function crearNuevoPais(datosPais) {
+  console.log("Capa de servicio", datosPais)
   return await paisesRepository.crearPais(datosPais);
-}
+  }
 
 export async function eliminarPaisPorId(id) {
     return await paisesRepository.eliminarPorId(id);

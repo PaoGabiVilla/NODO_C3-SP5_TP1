@@ -1,3 +1,4 @@
+<!--NODO_C3-SP5_TP1/src/views/addPaises.ejs-->
 <body>
 
     <h1>Agregar País</h1>
@@ -12,42 +13,42 @@
 
             <!-- NOMBRE OFICIAL -->
             <label for="nombre">Nombre Oficial:</label><br>
-            <input type="text" id="nombre" name="name.official" required minlength="3" maxlength="90">
+           <input type="text" id="nombre" name="name[official]" >
             <br><br>
 
             <!-- CAPITAL -->
             <label for="capital">Capital (si hay más de una, separar por coma):</label><br>
-            <input type="text" id="capital" name="capital" required minlength="3" maxlength="90">
+            <input type="text" id="capital" name="capital">
             <br><br>
 
             <!-- FRONTERAS -->
             <label for="borders">Fronteras (códigos de 3 letras, separados por coma):</label><br>
-            <input type="text" id="borders" name="borders" pattern="^([A-Z]{3})(,[A-Z]{3})*$" placeholder="Ej: ARG,BRA,CHL">
+            <input type="text" id="borders" name="borders">
             <br><br>
 
             <!-- ÁREA -->
             <label for="area">Área (km²):</label><br>
-            <input type="number" id="area" name="area" min="1" step="0.01" required>
+            <input type="number" id="area" name="area">
             <br><br>
 
             <!-- POBLACIÓN -->
             <label for="population">Población:</label><br>
-            <input type="number" id="population" name="population" min="1" required>
+            <input type="number" id="population" name="population">
             <br><br>
 
             <!-- GINI -->
             <label for="gini">Índice Gini (0 - 100):</label><br>
-            <input type="number" id="gini" name="gini" min="0" max="100" step="0.1" placeholder="Opcional">
+            <input type="number" id="gini" name="gini">
             <br><br>
 
             <!-- TIMEZONES -->
             <label for="timezones">Zonas Horarias (separadas por coma):</label><br>
-            <input type="text" id="timezones" name="timezones" placeholder="Ej: UTC-03:00,UTC-04:00">
+            <input type="text" id="timezones" name="timezones[]">
             <br><br>
 
             <!-- CREADOR -->
             <label for="creador">Creador:</label><br>
-            <input type="text" id="creador" name="creador" required>
+            <input type="text" id="creador" name="creador">
             <br><br>
 
             <!-- BOTÓN GUARDAR -->
@@ -55,7 +56,7 @@
 
             <br><br><br>
             <!-- ENLACE PARA VOLVER AL DASHBOARD -->
-            <a href="/paises">← Volver al Dashboard</a>
+            <a href="/api/paises">← Volver al Dashboard</a>
         </div>
     </form>
 

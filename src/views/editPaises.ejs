@@ -1,4 +1,5 @@
-<!-- editPaises.ejs -->
+
+<!--NODO_C3-SP5_TP1/src/views/editPaises.ejs -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,7 +20,7 @@
 
     <!-- NOMBRE OFICIAL -->
     <label for="name">Nombre Oficial "El nombre oficial debe tener entre 3 y 90 caracteres":</label>
-    <input type="text" name="name[official]" value="<%= pais.name?.official || pais.name?.nativeName?.spa?.official %>">
+    <input type="text" id="nombre" name="name[official]" value="<%= pais.name.official || 'Sin nombre' %>">
 
     <br><br>
 
@@ -42,13 +43,19 @@
 
         <!-- POBLACIÓN -->
     <label for="population">Población:</label>
-    <input type="number" id="population" name="population" value="<%= pais.population %>">
+    <input type="number" id="population" name="population" step="0.000.000.000.000" value="<%= pais.population %>">
     <br><br>
 
     <!-- GINI -->
     <label for="gini">Índice de Gini (0-100):</label>
-    <input type="number" id="gini" name="gini" value="<%= pais.gini ? pais.gini : '' %>" >
+    <input type="number" id="gini" name="gini" step="0.01" value="<%= pais.gini ? pais.gini : '' %>" >
     <br><br>
+
+   <!-- Zona Horaria -->
+<label for="timezones">Zona Horaria:</label>
+<input type="text" id="timezones" name="timezones[]" value="<%= pais.timezones ? pais.timezones.join(', ') : '' %>">
+<br><br>
+
 
     <!-- CREADOR -->
     <label for="creador">Creador:</label>

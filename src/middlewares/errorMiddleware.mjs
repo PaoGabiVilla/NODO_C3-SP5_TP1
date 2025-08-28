@@ -1,4 +1,4 @@
-//errorMiddleware.mjs
+//NODO_C3-SP5_TP1/src/middlewares/errorMiddleware.mjs
 import { validationResult } from 'express-validator';
 
 export const handleValidationErrors = (req, res, next) => {

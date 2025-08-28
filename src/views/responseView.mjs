@@ -1,4 +1,4 @@
-// responseView.mjs - Adaptado a Sprint 5 con nombre oficial en español
+//NODO_C3-SP5_TP1/src/views/responseView.mjs - Adaptado a Sprint 5 con nombre oficial en español
 
 export function renderizarPais(pais) {
   return {
