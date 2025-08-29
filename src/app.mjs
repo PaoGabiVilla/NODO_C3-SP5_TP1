@@ -58,10 +58,6 @@ app.get('/acercade', (req, res) => {
   res.render('acercade', { title: 'Acerca de' });
 });
 
-app.get('/contact', (req, res) => {
-  res.render('contact', { title: 'Contáctanos' });
-});
-
 // MANEJO DE RUTA NO ENCONTRADA
 app.use((req, res) => {
   res.status(404).send({ mensaje: "Ruta no encontrada" });
