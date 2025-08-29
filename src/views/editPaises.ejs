@@ -52,22 +52,31 @@
     <br><br>
 
    <!-- Zona Horaria -->
-<label for="timezones">Zona Horaria:</label>
-<input type="text" id="timezones" name="timezones[]" value="<%= pais.timezones ? pais.timezones.join(', ') : '' %>">
-<br><br>
+    <label for="timezones">Zona Horaria:</label>
+    <select id="timezones" name="timezones[]" multiple size="8">
+      <option value="UTC-08:00" <%= pais.timezones && pais.timezones.includes("UTC-08:00") ? "selected" : "" %>>UTC-08:00</option>
+      <option value="UTC-07:00" <%= pais.timezones && pais.timezones.includes("UTC-07:00") ? "selected" : "" %>>UTC-07:00</option>
+      <option value="UTC-06:00" <%= pais.timezones && pais.timezones.includes("UTC-06:00") ? "selected" : "" %>>UTC-06:00</option>
+      <option value="UTC-05:00" <%= pais.timezones && pais.timezones.includes("UTC-05:00") ? "selected" : "" %>>UTC-05:00</option>
+      <option value="UTC-04:30" <%= pais.timezones && pais.timezones.includes("UTC-04:30") ? "selected" : "" %>>UTC-04:30</option>
+      <option value="UTC-04:00" <%= pais.timezones && pais.timezones.includes("UTC-04:00") ? "selected" : "" %>>UTC-04:00</option>
+      <option value="UTC-03:30" <%= pais.timezones && pais.timezones.includes("UTC-03:30") ? "selected" : "" %>>UTC-03:30</option>
+      <option value="UTC-03:00" <%= pais.timezones && pais.timezones.includes("UTC-03:00") ? "selected" : "" %>>UTC-03:00</option>
+      <option value="UTC-02:00" <%= pais.timezones && pais.timezones.includes("UTC-02:00") ? "selected" : "" %>>UTC-02:00</option>
+    </select>
+    <br><br>
 
 
-    <!-- CREADOR -->
+
+    <!-- Campo visible pero no editable -->
     <label for="creador">Creador:</label>
-    <input type="text" id="creador" name="creador" value="<%= pais.creador %>">
+    <input type="text" id="creador" name="creador" value="Paola Gabriela Villafañez" readonly>
     <br><br>
 
     <!-- BOTÓN DE GUARDAR -->
     <button type="submit">Actualizar País</button>
   </form>
-
-  <br>
-  <a href="/api/paises">⬅ Volver al Dashboard</a>
+  
 </body>
 </html>
 

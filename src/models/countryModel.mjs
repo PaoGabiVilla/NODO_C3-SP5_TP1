@@ -33,8 +33,10 @@ const countrySchema = new mongoose.Schema({
     max: 100
   },
   creador: {
-    type: String,
-  }
+  type: String,
+  default: "Paola Gabriela Villafañez",
+  immutable: true // nunca cambia después de creado
+}
 });
 
 const Country = mongoose.model('Country', countrySchema, 'Grupo-06');
