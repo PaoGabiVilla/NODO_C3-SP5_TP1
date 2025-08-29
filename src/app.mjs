@@ -24,7 +24,6 @@ app.use(expressLayouts);
 app.set('layout', 'layout');
 
 // MIDDLEWARES
-//app.use(express.static(path.resolve('./public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 

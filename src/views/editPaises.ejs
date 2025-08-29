@@ -20,13 +20,13 @@
 
     <!-- NOMBRE OFICIAL -->
     <label for="name">Nombre Oficial "El nombre oficial debe tener entre 3 y 90 caracteres":</label>
-    <input type="text" id="nombre" name="name[official]" value="<%= pais.name.official || 'Sin nombre' %>">
+    <input class="input-error" type="text" id="nombre" name="name[official]" value="<%= pais.name.official || 'Sin nombre' %>">
 
     <br><br>
 
     <!-- CAPITAL -->
     <label for="capital">Capital (si hay más de una, separadas por coma):</label>
-    <input type="text" id="capital" name="capital" 
+    <input class="input-error" type="text" id="capital" name="capital" 
            value="<%= pais.capital ? pais.capital.join(', ') : '' %>">
     <br><br>
 

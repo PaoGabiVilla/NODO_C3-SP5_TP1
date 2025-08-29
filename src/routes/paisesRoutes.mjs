@@ -30,7 +30,7 @@ router.put('/paises/:id', registerValidationRules(),handleValidationErrors, actu
 //Agreagar
 router.get('/paises/agregar',mostrarFormularioAgregarPais);
 router.post('/paises/agregar', registerValidationRules(), handleValidationErrors, agregarNuevoPaisController);
-//router.put('/paises/actualizar/:id', registerValidationRules(),handleValidationErrors, actualizarPaisController);
+
 
 //****************************************************************************************************** */
 //Eliminar
