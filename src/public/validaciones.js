@@ -1,15 +1,16 @@
 // public/validaciones.js
-console.log("validaciones cargadas")
+console.log("validaciones cargadas");
+
 const form = document.querySelector('.add'); // la clase del form
 
 form.addEventListener('submit', function (e) {
 
     // === Nombre oficial ===
-    const nombreInput = document.getElementById('nameOfficial');
+    const nombreInput = document.getElementById('nombre'); // <input id="nombre">
     const nombre = nombreInput.value.trim();
 
     if (!nombre) {
-        alert("El campo 'Nombre oficial' es requerido.");
+        alert("El campo 'Nombre oficial' es obligatorio.");
         e.preventDefault();
         return;
     }
@@ -20,20 +21,23 @@ form.addEventListener('submit', function (e) {
         return;
     }
 
-    // === Capital ===
+    // === Capital (puede ser varias separadas por coma) ===
     const capitalInput = document.getElementById('capital');
-    const capital = capitalInput.value.trim();
+    const capitalTexto = capitalInput.value.trim();
 
-    if (!capital) {
-        alert("El campo 'Capital' es requerido.");
+    if (!capitalTexto) {
+        alert("El campo 'Capital' es obligatorio.");
         e.preventDefault();
         return;
     }
 
-    if (capital.length < 3 || capital.length > 90) {
-        alert("La 'Capital' debe tener entre 3 y 90 caracteres.");
-        e.preventDefault();
-        return;
+    const capitalArray = capitalTexto.split(',').map(c => c.trim());
+    for (let cap of capitalArray) {
+        if (cap.length < 3 || cap.length > 90) {
+            alert(`La capital "${cap}" debe tener entre 3 y 90 caracteres.`);
+            e.preventDefault();
+            return;
+        }
     }
 
     // === Fronteras ===
@@ -42,10 +46,7 @@ form.addEventListener('submit', function (e) {
 
     if (bordersTexto) {
         const bordersArray = bordersTexto.split(',').map(b => b.trim());
-
-        for (let i = 0; i < bordersArray.length; i++) {
-            let code = bordersArray[i];
-
+        for (let code of bordersArray) {
             if (!/^[A-Z]{3}$/.test(code)) {
                 alert(`El código de frontera "${code}" debe ser exactamente 3 letras mayúsculas.`);
                 e.preventDefault();
@@ -59,7 +60,7 @@ form.addEventListener('submit', function (e) {
     const area = Number(areaInput.value);
 
     if (isNaN(area) || area <= 0) {
-        alert("El campo 'Área' debe ser un número positivo.");
+        alert("El campo 'Área' es obligatorio y debe ser un número positivo.");
         e.preventDefault();
         return;
     }
@@ -69,7 +70,7 @@ form.addEventListener('submit', function (e) {
     const population = Number(populationInput.value);
 
     if (!Number.isInteger(population) || population <= 0) {
-        alert("La 'Población' debe ser un número entero positivo.");
+        alert("La 'Población' es obligatoria y debe ser un número entero positivo.");
         e.preventDefault();
         return;
     }
@@ -81,11 +82,11 @@ form.addEventListener('submit', function (e) {
     if (gini) {
         const giniNum = Number(gini);
         if (isNaN(giniNum) || giniNum < 0 || giniNum > 100) {
-            alert("El índice Gini debe estar entre 0 y 100.");
+            alert("El índice Gini (si se ingresa) debe estar entre 0 y 100.");
             e.preventDefault();
             return;
         }
     }
 
-    // ✅ Si todo pasa, se envía normalmente
+    
 });

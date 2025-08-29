@@ -38,8 +38,12 @@ try {
                     area: pais.area || 0,
                     population: pais.population || 0,
 
-                    // Gini: primer valor numérico si existe
-                    gini: pais.gini ? pais.gini[Object.keys(pais.gini)[0]] : null,
+                    // Gini: valor numérico más reciente si existe
+                    gini: pais.gini ? pais.gini[Object.keys(pais.gini)
+                                .map(Number).sort((a, b) => a - b).pop()
+                            ] 
+                        : null,
+
                     
                     // Timezones: lista completa
                     timezones: pais.timezones || [],

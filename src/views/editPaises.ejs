@@ -52,7 +52,7 @@
     <br><br>
 
    <!-- Zona Horaria -->
-    <label for="timezones">Zona Horaria:</label>
+    <label for="timezones">Zona Horaria: (Control clic para seleccionar mas de una)</label>
     <select id="timezones" name="timezones[]" multiple size="8">
       <option value="UTC-08:00" <%= pais.timezones && pais.timezones.includes("UTC-08:00") ? "selected" : "" %>>UTC-08:00</option>
       <option value="UTC-07:00" <%= pais.timezones && pais.timezones.includes("UTC-07:00") ? "selected" : "" %>>UTC-07:00</option>
